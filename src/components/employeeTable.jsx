@@ -15,9 +15,19 @@ async componentDidMount () {
         console.log(employeeList);
 }
 
+FormatDate(dat) {
+    const date = new Date(dat);
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+
+    return month + '-' + day + '-' + year;
+}
+
     render() { 
         let data = this.state.employeeList;
         console.log(data);
+        console.log(data[0]);
         //let image = data.picture.thumbnail;
         //let name = data.name.first + ' ' + data.name.last;
 
@@ -25,8 +35,8 @@ async componentDidMount () {
 
         return (
             <div>
-                <table class="table">
-                    <thead class="thead-dark">
+                <table className="table">
+                    <thead className="thead-dark">
                         <tr>
                         <th scope="col">Image</th>
                         <th scope="col">Name</th>
@@ -35,58 +45,18 @@ async componentDidMount () {
                         <th scope="col">DOB</th>
                         </tr>
                     </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+                    <tbody>
+                        {this.state.employeeList.map(employee => (
+                            <tr>
+                            <th scope="row"><img src ={employee.picture.medium} alt="" /></th>
+                            <td>{employee.name.first + " "}{employee.name.last}</td>
+                            <td>{employee.phone}</td>
+                            <td>{employee.email}</td>
+                            <td>{this.FormatDate(employee.dob.date)}</td>
+                            </tr>
+        ))}
+                    </tbody>
+                </table>
             </div>
         );
 

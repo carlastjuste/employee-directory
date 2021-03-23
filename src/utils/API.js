@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASEURL ="https://randomuser.me/api/?results=";
-const numberOfUser = "100";
+const numberOfUser = "50";
 
 
 export default {

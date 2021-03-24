@@ -18,3 +18,15 @@ header {
   width: 100%;
 }
 
+.search-area {
+  width: 25%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+
+/* .form-control {
+  size: 25;
+} */
+

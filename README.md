@@ -1,4 +1,4 @@
-# EMPLOYEE DIRECTORT
+# EMPLOYEE DIRECTORY
 This web application allows the user to see a random employee directory. For every employee we have the profile picture, name, phone number, email and date of birth.
 The user can filter the employee list by name and sort them by name, phone number, email and date of birth.
 

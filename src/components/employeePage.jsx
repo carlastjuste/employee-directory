@@ -1,40 +1,48 @@
-import axios from "axios";
 import React, { Component } from 'react';
 import API from "../utils/API";
 
-class EmployeeTable extends Component {
+class EmployeePage extends Component {
     state = { 
-        employeeList :[]
-
+        searchValue: '',
+        employeeList :[],
      }
 
-async componentDidMount () {
+    handleChange = e => {
+        let searchValue = this.state.SearchValue;
+        searchValue = e.currentTarget.value;
+        this.setState({searchValue});
+
+    }
+
+    async componentDidMount () {
         const res = await API.getUsers(); 
         const employeeList = res.data.results;
         this.setState({employeeList : employeeList});
         console.log(employeeList);
-}
+    }
 
-FormatDate(dat) {
+    FormatDate(dat) {
     const date = new Date(dat);
     let year = date.getFullYear();
     let month = (1 + date.getMonth()).toString().padStart(2, '0');
     let day = date.getDate().toString().padStart(2, '0');
 
     return month + '-' + day + '-' + year;
-}
+    }
 
-    render() { 
-        let data = this.state.employeeList;
-        console.log(data);
-        console.log(data[0]);
-        //let image = data.picture.thumbnail;
-        //let name = data.name.first + ' ' + data.name.last;
 
-        
 
-        return (
-            <div>
+render() {
+            return (
+            <React.Fragment>
+                    <div className = "search-area">
+                        <input className = "form-control" 
+                               value={this.state.SearchValue}
+                               onChange={this.handleChange}
+                               type="search" 
+                               placeholder="Search by name..."  />
+                    </div>
+                    <div>
                 <table className="table">
                     <thead className="thead-dark">
                         <tr>
@@ -46,8 +54,15 @@ FormatDate(dat) {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.employeeList.map(employee => (
-                            <tr>
+                    {this.state.employeeList.filter(employee => {
+                        if (this.state.searchValue === "") 
+                        {return employee;}
+                        else if (employee.name.first.toLowerCase().includes(this.state.searchValue.toLowerCase()) || employee.name.last.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+                         {return employee;}
+                        }
+
+                    ).map((employee,index) => (
+                            <tr key={index}>
                             <th scope="row"><img src ={employee.picture.medium} alt="" /></th>
                             <td>{employee.name.first + " "}{employee.name.last}</td>
                             <td>{employee.phone}</td>
@@ -58,10 +73,9 @@ FormatDate(dat) {
                     </tbody>
                 </table>
             </div>
-        );
-
-
+            </React.Fragment>
+            )
     }
 }
- 
-export default EmployeeTable;
+
+export default EmployeePage;

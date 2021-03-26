@@ -1,18 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './components/header';
-import EmployeeTable from './components/employeeTable';
-import SearchArea from './components/searchArea'
+import EmployeePage from './components/employeePage';
+import './App.css';
 
-function App() {
-  return (
-    <React.Fragment>
-      <Header />
-      <SearchArea />
-      <EmployeeTable />
-    </React.Fragment>
-  );
+
+class App extends Component {
+
+
+
+  render(){
+    return (
+      <React.Fragment>
+        <Header />
+          <EmployeePage />
+      </React.Fragment>
+    );
+
+  }
+
 }
 
 export default App;

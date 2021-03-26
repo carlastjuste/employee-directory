@@ -9,13 +9,14 @@ body {
 }
 
 header {
-  background:lightskyblue;
+  background:#A9A9A9;
   padding: 30px;
   text-align: center;
-  color: #ffffff;
-  font-size: x-large;
+  color: #343A40;
+  font-size: medium;
   font-family: "Comic Sans MS", "Times New Roman", Times, serif;
   width: 100%;
+  border-bottom: 5px solid #007BFF;
 }
 
 .search-area {
@@ -26,7 +27,4 @@ header {
   padding: 30px;
 }
 
-/* .form-control {
-  size: 25;
-} */
 

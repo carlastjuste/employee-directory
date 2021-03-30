@@ -6,7 +6,6 @@ class EmployeePage extends Component {
     state = { 
         searchValue: '',
         employeeList :[],
-       // SortedColumn: {path: 'name', order: 'asc' }
      };
 
     handleChange = e => {
@@ -33,10 +32,8 @@ class EmployeePage extends Component {
     }
 
     sortColumn = path =>{
-        //console.log(path);
-
+        //console.log(path)
         let emp = this.state.employeeList;
-
         switch (path) {
             case 'phone': 
                 emp = _.orderBy(emp, ['phone'], ['asc']);
@@ -46,24 +43,13 @@ class EmployeePage extends Component {
                 break; 
             case 'name':
                 emp = _.orderBy(emp, ['name.first'], ['asc']);
-                break;
-            
-                    
+                break;                  
         }
 
         this.setState({employeeList: emp});
 
-
     };
 
-    sortIcon = order => {
-
-        if (order === 'asc')
-            return <i className="fa fa-sort-asc"></i>;
-        else 
-            return <i className="fa fa-sort-asc"></i>
-    }
-        
     
 
 render() {
@@ -83,7 +69,7 @@ render() {
                         <tr>
                         <th scope="col" >Image</th>
                         <th onClick={()=>this.sortColumn('name')} scope="col">Name</th>
-                        <th onClick={()=>this.sortColumn('phone')} scope="col">Phone{this.sortIcon}</th>
+                        <th onClick={()=>this.sortColumn('phone')} scope="col">Phone</th>
                         <th onClick={()=>this.sortColumn('email')} scope="col">Email</th>
                         <th onClick={()=>this.sortColumn('dob')} scope="col">DOB</th>
                         </tr>

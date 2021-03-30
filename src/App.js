@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Header />
-          <EmployeePage />
+        <EmployeePage />
       </React.Fragment>
     );
 

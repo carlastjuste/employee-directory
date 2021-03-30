@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import API from "../utils/API";
+import _ from 'lodash';
 
 class EmployeePage extends Component {
     state = { 
         searchValue: '',
         employeeList :[],
-     }
+       // SortedColumn: {path: 'name', order: 'asc' }
+     };
 
     handleChange = e => {
         let searchValue = this.state.SearchValue;
@@ -30,9 +32,42 @@ class EmployeePage extends Component {
     return month + '-' + day + '-' + year;
     }
 
+    sortColumn = path =>{
+        //console.log(path);
 
+        let emp = this.state.employeeList;
+
+        switch (path) {
+            case 'phone': 
+                emp = _.orderBy(emp, ['phone'], ['asc']);
+                break;
+            case 'email': 
+                emp = _.orderBy(emp, ['email'], ['asc']);
+                break; 
+            case 'name':
+                emp = _.orderBy(emp, ['name.first'], ['asc']);
+                break;
+            
+                    
+        }
+
+        this.setState({employeeList: emp});
+
+
+    };
+
+    sortIcon = order => {
+
+        if (order === 'asc')
+            return <i className="fa fa-sort-asc"></i>;
+        else 
+            return <i className="fa fa-sort-asc"></i>
+    }
+        
+    
 
 render() {
+  
             return (
             <React.Fragment>
                     <div className = "search-area">
@@ -46,11 +81,11 @@ render() {
                 <table className="table">
                     <thead className="thead-dark">
                         <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">DOB</th>
+                        <th scope="col" >Image</th>
+                        <th onClick={()=>this.sortColumn('name')} scope="col">Name</th>
+                        <th onClick={()=>this.sortColumn('phone')} scope="col">Phone{this.sortIcon}</th>
+                        <th onClick={()=>this.sortColumn('email')} scope="col">Email</th>
+                        <th onClick={()=>this.sortColumn('dob')} scope="col">DOB</th>
                         </tr>
                     </thead>
                     <tbody>

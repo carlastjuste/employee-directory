@@ -9,7 +9,7 @@ The following image demonstrates the application functionality:
 
 ## Deployed link
 
-[Employee Directory](https://employee-directory.herokuapp.com/)
+[Employee Directory](https://employee-directory-r.herokuapp.com/)
 
 ## API Info
 
